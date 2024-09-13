@@ -1,0 +1,64 @@
+
+
+trigger:
+  branches:
+    include:
+      - mychanges
+
+resources:
+  repositories:
+    - repository: 
+      name: three-tier-architecture-demo
+      type: github
+      endpoint: krishmint-git
+
+variables:
+  tag: '$(Build.BuildId)'
+  containerRegistry: 'dockerhub'
+
+pool:
+  name:"" 
+
+stages:
+- stage: Build
+  displayName: Build image with docker compose
+  jobs:
+  - job: Build
+    displayName: Build
+    steps:
+    
+    - script: |
+        git config user.email "you@example.com"
+        git config user.name "Your Name"
+        git checkout master
+        sed -i 's/TAG=.*/TAG=$(tag)/' .env
+        git add .env
+        git commit -m "Update TAG to $(tag)"
+        git push origin master
+      displayName: 'Update .env file with new tag'
+
+    - task: DockerCompose@1
+      displayName: Build docker image
+      inputs:
+        containerregistrytype: Container Registry
+        dockerRegistryEndpoint: $(containerRegistry)
+        dockerComposeFile: '**/docker-compose.yaml'
+        action: 'Build services'
+
+- stage: push
+  displayName: Build image with docker compose
+  jobs:
+  - job: push
+    displayName: push
+    steps:
+    - task: DockerCompose@1
+      displayName: 'Push Docker images'
+      inputs:
+        containerregistrytype: Container Registry
+        dockerRegistryEndpoint: $(containerRegistry)
+        dockerComposeFile: '**/docker-compose.yaml'
+        action: 'Push services'
+        
+        
+
+   
