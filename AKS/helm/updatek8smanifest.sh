@@ -11,6 +11,14 @@ git clone "$REPO_URL" /tmp/temp_repo
 # Navigate into the cloned repository directory
 cd /tmp/temp_repo
 
+export email="krisnendu007@gmail.com"
+export username="krishmint"
+export token="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"
+
+git config --global user.name "$username"
+git config --global user.email "$email"
+git remote set-url origin "https://$token@github.com/$username/three-tier-architecture-demo.git"
+
 # Make changes to the Kubernetes manifest file(s)
 # 
 sed -i "s|version:.*|version: $1|g" AKS/helm/values.yaml  ## to chnage the values.yaml file for help t use updated image
