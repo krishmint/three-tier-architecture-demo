@@ -39,7 +39,7 @@ stages:
         containerregistrytype: Container Registry
         dockerRegistryEndpoint: $(containerRegistry)
         projectName: threetierarch
-        dockerComposeFile: '**/docker-compose.yaml'
+        dockerComposeFile: 'three-tier-architecture-demo/docker-compose.yaml'
         action: 'Run a Docker Compose command'
         dockerComposeCommand: 'build'
         
@@ -56,7 +56,7 @@ stages:
         containerregistrytype: Container Registry
         dockerRegistryEndpoint: $(containerRegistry)
         projectName: threetierarch
-        dockerComposeFile: '**/docker-compose.yaml'
+        dockerComposeFile: 'three-tier-architecture-demo/docker-compose.yaml'
         action: 'Run a Docker Compose command'
         dockerComposeCommand: 'push'
         
