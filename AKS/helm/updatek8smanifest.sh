@@ -3,7 +3,7 @@
 set -x
 
 # Set the repository URL
-REPO_URL="https://github.com/krishmint/three-tier-architecture-demo.git"
+REPO_URL="https://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@github.com/krishmint/three-tier-architecture-demo.git"
 
 # Clone the git repository into the /tmp directory
 git clone "$REPO_URL" /tmp/temp_repo
@@ -11,13 +11,7 @@ git clone "$REPO_URL" /tmp/temp_repo
 # Navigate into the cloned repository directory
 cd /tmp/temp_repo
 
-export email="krisnendu007@gmail.com"
-export username="krishmint"
-export token="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"
 
-git config --global user.name "$username"
-git config --global user.email "$email"
-git remote set-url origin "https://$username:$token@github.com/$username/three-tier-architecture-demo.git"
 
 # Make changes to the Kubernetes manifest file(s)
 # 
