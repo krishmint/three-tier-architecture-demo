@@ -3,21 +3,19 @@
 trigger:
   branches:
     include:
-      - mychanges
+      - master
 
 resources:
-  repositories:
-    - repository: 
-      name: three-tier-architecture-demo
-      type: github
-      endpoint: krishmint-git
+   - repo: self
+  
+      
 
 variables:
   tag: '$(Build.BuildId)'
   containerRegistry: 'dockerhub'
 
 pool:
-  name:"" 
+  name: '3-tier' 
 
 stages:
 - stage: Build
