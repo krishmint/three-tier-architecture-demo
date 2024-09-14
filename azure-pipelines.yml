@@ -28,14 +28,14 @@ stages:
     steps:
     
     - script: |
-        git config user.email "you@example.com"
-        git config user.name "Your Name"
-        git checkout master
-        sed -i 's/TAG=.*/TAG=$(tag)/' .env
-        git add .env
-        git commit -m "Update TAG to $(tag)"
-        git push origin master
-      displayName: 'Update .env file with new tag'
+        sudo apt update
+        sudo apt install dos2unix -y
+        dos2unix AKS/helm/updatek8smanifest.sh
+
+    - task: ShellScript@2
+      inputs:
+        scriptPath: "AKS/helm/updatek8smanifest.sh" 
+        args: '$(tag)'   
 
     - task: DockerCompose@1
       displayName: Build docker image
