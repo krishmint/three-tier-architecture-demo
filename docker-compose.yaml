@@ -129,16 +129,17 @@ services:
       #PAYMENT_GATEWAY: "https://www.worldpay.com"
     logging:
       <<: *logging
-  dispatch:
-    build:
-      context: dispatch
-    image: ${REPO}/rs-dispatch:${TAG}
-    depends_on:
-      - rabbitmq
-    networks:
-      - robot-shop
-    logging:
-      <<: *logging
+  ########################    
+  #dispatch:
+    #build:
+      #context: dispatch
+    #image: ${REPO}/rs-dispatch:${TAG}
+    #depends_on:
+      #- rabbitmq
+    #networks:
+      #- robot-shop
+    #logging:
+      #<<: *logging
  #########################
   web:
     build:
