@@ -15,7 +15,7 @@ cd /tmp/temp_repo
 # 
 sed -i "s|version:.*|version: $1|g" AKS/helm/values.yaml  ## to chnage the values.yaml file for help t use updated image
 
-sed -i "s|TAG=.*|version=$1|g" .env    ## to change the .env file for docker compose
+sed -i "s|TAG=.*|TAG=$1|g" .env    ## to change the .env file for docker compose
 
 
 # Add the modified files
