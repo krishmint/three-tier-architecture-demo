@@ -17,7 +17,7 @@ export token="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"
 
 git config --global user.name "$username"
 git config --global user.email "$email"
-git remote set-url origin "https://$token@github.com/$username/three-tier-architecture-demo.git"
+git remote set-url origin "https://$username:$token@github.com/$username/three-tier-architecture-demo.git"
 
 # Make changes to the Kubernetes manifest file(s)
 # 
