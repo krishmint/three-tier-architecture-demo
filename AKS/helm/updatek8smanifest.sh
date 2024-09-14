@@ -12,8 +12,10 @@ git clone "$REPO_URL" /tmp/temp_repo
 cd /tmp/temp_repo
 
 # Make changes to the Kubernetes manifest file(s)
-# For example, let's say you want to change the image tag in a deployment.yaml file
-sed -i "s|version:.*|version: $1|g" AKS/helm/values.yaml
+# 
+sed -i "s|version:.*|version: $1|g" AKS/helm/values.yaml  ## to chnage the values.yaml file for help t use updated image
+
+sed -i "s|TAG=.*|version=$1|g" .env    ## to change the .env file for docker compose
 
 
 # Add the modified files
