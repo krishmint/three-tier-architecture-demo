@@ -40,10 +40,12 @@ stages:
         dockerRegistryEndpoint: $(containerRegistry)
         projectName: threetierarch
         dockerComposeFile: '**/docker-compose.yaml'
-        action: 'Build services'
+        action: 'Run a Docker Compose command'
+        dockerComposeCommand: 'build'
+        
 
 - stage: push
-  displayName: Build image with docker compose
+  displayName: push image with docker compose
   jobs:
   - job: push
     displayName: push
@@ -53,8 +55,10 @@ stages:
       inputs:
         containerregistrytype: Container Registry
         dockerRegistryEndpoint: $(containerRegistry)
+        projectName: threetierarch
         dockerComposeFile: '**/docker-compose.yaml'
-        action: 'Push services'
+        action: 'Run a Docker Compose command'
+        dockerComposeCommand: 'push'
         
         
 
