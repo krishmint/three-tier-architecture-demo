@@ -33,15 +33,9 @@ stages:
         scriptPath: "AKS/helm/updatek8smanifest.sh" 
         args: '$(tag)'   
 
-    - task: DockerCompose@1
+    - script: |
+        docker-compose build
       displayName: Build docker image
-      inputs:
-        containerregistrytype: Container Registry
-        dockerRegistryEndpoint: $(containerRegistry)
-        projectName: threetierarch
-        dockerComposeFile: 'three-tier-architecture-demo/docker-compose.yaml'
-        action: 'Run a Docker Compose command'
-        dockerComposeCommand: 'build'
         
 
 - stage: push
@@ -50,15 +44,10 @@ stages:
   - job: push
     displayName: push
     steps:
-    - task: DockerCompose@1
-      displayName: 'Push Docker images'
-      inputs:
-        containerregistrytype: Container Registry
-        dockerRegistryEndpoint: $(containerRegistry)
-        projectName: threetierarch
-        dockerComposeFile: 'three-tier-architecture-demo/docker-compose.yaml'
-        action: 'Run a Docker Compose command'
-        dockerComposeCommand: 'push'
+
+    - script: |
+        docker-compose push
+      displayName: push docker image
         
         
 
