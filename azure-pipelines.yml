@@ -38,16 +38,7 @@ stages:
       displayName: Build docker image
         
 
-- stage: push
-  displayName: push image with docker compose
-  jobs:
-  - job: push
-    displayName: push
-    steps:
 
-    - script: |
-        docker-compose push
-      displayName: push docker image
         
         
 
