@@ -38,6 +38,7 @@ stages:
       inputs:
         containerregistrytype: Container Registry
         dockerRegistryEndpoint: $(containerRegistry)
+        projectName: threetierarch
         dockerComposeFile: '**/docker-compose.yaml'
         action: 'Build services'
 
