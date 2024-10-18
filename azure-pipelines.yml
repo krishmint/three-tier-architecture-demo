@@ -26,8 +26,10 @@ stages:
     - script: |
         sudo apt update
         sudo apt install dos2unix -y
-        dos2unix AKS/helm/updatek8smanifest.sh
-
+        dos2unix AKS/helm/updatek8smanifest.sh      ## this script update the tag in .env file before dockercompose build the project
+                                                      so that docker compose tage the images correctly
+                                                     ##also update the k8s helm values.yaml with corect tag
+                                                     
     - task: ShellScript@2
       inputs:
         scriptPath: "AKS/helm/updatek8smanifest.sh" 
