@@ -1,0 +1,45 @@
+
+
+trigger:
+  branches:
+    include:
+      - master
+
+resources:
+   - repo: self
+  
+variables:
+  tag: '$(Build.BuildId)'
+  containerRegistry: 'dockerhub'
+
+pool:
+  name: '3-tier' 
+
+stages:
+- stage: Build
+  displayName: Build image with docker compose
+  jobs:
+  - job: Build
+    displayName: Build
+    steps:
+    
+    - script: |
+        sudo apt update
+        sudo apt install dos2unix -y
+        dos2unix AKS/helm/updatek8smanifest.sh
+
+    - task: ShellScript@2
+      inputs:
+        scriptPath: "AKS/helm/updatek8smanifest.sh" 
+        args: '$(tag)'   
+
+    - script: |
+        docker-compose build
+      displayName: Build docker image
+        
+
+
+        
+        
+
+   

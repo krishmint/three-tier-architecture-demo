@@ -1,7 +1,7 @@
 # Registry and repository for Docker images
 # Default is docker/robotshop/image:latest
 image:
-  repo: robotshop
+  repo: krishmint
   version: latest
   pullPolicy: IfNotPresent
 

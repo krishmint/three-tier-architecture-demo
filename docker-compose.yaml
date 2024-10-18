@@ -4,7 +4,9 @@ services:
   mongodb:
     build:
       context: mongo
+
     image: krishmint/rs-mongodb:${TAG}
+
     networks:
       - robot-shop
     logging: &logging   ## &logging is modularizing the logging part to use the same config later in script . 
@@ -143,27 +145,31 @@ services:
       #PAYMENT_GATEWAY: "https://www.worldpay.com"
     logging:
       <<: *logging
+      
 
-   ############################   
-  dispatch:
-    build:
-      context: dispatch
-    image: krishmint/rs-dispatch:${TAG}
-    depends_on:
-      - rabbitmq
-    networks:
-      - robot-shop
-    logging:
-      <<: *logging
+  ########################    
+  #dispatch:
+    #build:
+      #context: dispatch
+    #image: ${REPO}/rs-dispatch:${TAG}
+    #depends_on:
+      #- rabbitmq
+    #networks:
+      #- robot-shop
+    #logging:
+      #<<: *logging
+ #########################
 
-##########################      
   web:
     build:
       context: web
-      args:
+      #args:
         # agent key to download tracing libs
         #KEY: ${INSTANA_AGENT_KEY}
+
     image: krishmint/rs-web:${TAG}
+
+    
     depends_on:
       - catalogue
       - user
