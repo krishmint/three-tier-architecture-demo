@@ -3,7 +3,7 @@ services:
   mongodb:
     build:
       context: mongo
-    image: ${REPO}/rs-mongodb:${TAG}
+    image: ${REPO}/rs-mongodb:${TAG}  # $repo and $tag value comes from .env file
     networks:
       - robot-shop
     logging: &logging
