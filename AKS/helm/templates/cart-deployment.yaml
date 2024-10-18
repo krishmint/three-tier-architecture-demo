@@ -14,9 +14,9 @@ spec:
       labels:
         service: cart
     spec:
-      {{ if .Values.psp.enabled }}
-      serviceAccountName: robot-shop
-      {{ end }}
+      # {{ if .Values.psp.enabled }}
+      #serviceAccountName: robot-shop
+      # {{ end }}
       containers:
       - name: cart
         image: {{ .Values.image.repo }}/rs-cart:{{ .Values.image.version }}
@@ -36,15 +36,15 @@ spec:
           requests:
             cpu: 100m
             memory: 50Mi
-      {{- with .Values.cart.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.cart.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.cart.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+      # {{- with .Values.cart.affinity }}
+      # affinity:
+       # {{- toYaml . | nindent 8 }}
+      # {{- end }}
+      # {{- with .Values.cart.nodeSelector }}
+      # nodeSelector:
+        # {{- toYaml . | nindent 8 }}
+      # {{- end }}
+      # {{- with .Values.cart.tolerations }}
+      # tolerations:
+        # {{- toYaml . | nindent 8 }}
+      # {{- end }}

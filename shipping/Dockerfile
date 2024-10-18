@@ -6,11 +6,14 @@ FROM ubuntu:22.04 AS build
 RUN apt-get update && apt-get -y install maven openjdk-11-jdk
 
 WORKDIR /opt/shipping
-
 COPY pom.xml /opt/shipping/
-RUN mvn dependency:resolve
 COPY src /opt/shipping/src/
+
+RUN mvn dependency:resolve 
+##It downloads all necessary dependencies from Maven repositories, ensuring that your project has everything it needs to compile and run correctly.
+
 RUN mvn package
+# packages your project into a JAR file.
 
 #
 # Run
