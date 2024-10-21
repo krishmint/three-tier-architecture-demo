@@ -53,6 +53,7 @@ if ! command -v docker &> /dev/null;
 then
     echo " docker installation started"
 sudo apt install -y docker.io
+sudo apt  install -y docker-compose
 fi
 
 
