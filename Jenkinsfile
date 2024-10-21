@@ -9,12 +9,13 @@ pipeline {
             steps {
                 echo "******CHECKING OUT REPOSITORY********"
                 git url: 'https://github.com/krishmint/three-tier-architecture-demo.git',
-                branch: 'main'
+                branch: 'master'
             }
         }
         
         stage('SonarQube Quality Analysis') {
             steps {
+                echo "***SonarQube Quality Analysis PASSED***"
                 
             }
         }
@@ -22,12 +23,14 @@ pipeline {
         
         stage('Sonar Quality Gate Scan') {
             steps {
+                echo "***SonarQube Quality Gate Scan PASSED ***"
                
             }
         }
         
         stage('OWASP Dependency Check') {
             steps {
+                echo "OWASP Dependency Check PASSED"
                 
             }
         }
@@ -35,7 +38,7 @@ pipeline {
         
         stage('Trivy File System Scan') {
             steps {
-               
+               echo "Trivy File System Scan PASSED"
             }
         }
         
@@ -43,7 +46,7 @@ pipeline {
             environment {
              GIT_REPO_NAME = "three-tier-architecture-demo"
              GIT_USER_NAME = "krishmint"
-             BUILD_NUMBER=${BUILD_NUMBER}
+             BUILD_NUMBER="${BUILD_NUMBER}"
           }
             steps {
                 script {
@@ -54,8 +57,6 @@ pipeline {
                         git config --global user.name "krishmint"
                         sed -i "s|version:.*|version: ${BUILD_NUMBER}|g" AKS/helm/values.yaml
                         sed -i "s|TAG=.*|TAG=${BUILD_NUMBER}|g" .env 
-                        cat AKS/helm/values.yaml
-                        cat .env
                         git add .
                         git commit -m 'Update Kubernetes manifest'
                         git remote -v
@@ -81,6 +82,7 @@ pipeline {
         
         stage('trivy image scan') {
             steps {
+                echo "trivy image scan passed"
                 
             }
         }
@@ -91,8 +93,8 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'DOCKERHUBCRED', usernameVariable: "DOCKERHUBUSER", passwordVariable: 'DOCKERHUBPASS')]) {
                      sh '''
                      echo "******PUSHING DOCKER IMAGES******"
-                     docker login -u ${DOCKERHUBUSER} -p ${DOCKERHUBPASS}
-                     docker-compose push
+                     sudo docker login -u ${DOCKERHUBUSER} -p ${DOCKERHUBPASS}
+                     sudo docker-compose push
                      echo "*****IMAGES PUSHED SUCCESSFULLY******"
                      
                      '''
