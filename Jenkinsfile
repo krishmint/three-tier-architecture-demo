@@ -38,6 +38,7 @@ pipeline {
         
         stage('Trivy File System Scan') {
             steps {
+               sh "trivy fs -o filesystemcheckreport.html ."
                echo "Trivy File System Scan PASSED"
             }
         }
@@ -82,6 +83,7 @@ pipeline {
         
         stage('trivy image scan') {
             steps {
+                sh "sudo docker images | awk '{print \$1}' | xargs -I {} sudo trivy image -o imageScanreport.html {}"
                 echo "trivy image scan passed"
                 
             }
