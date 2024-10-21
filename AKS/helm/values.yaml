@@ -2,7 +2,7 @@
 # Default is docker/robotshop/image:latest
 image:
   repo: krishmint
-  version: 9
+  version: 10
   pullPolicy: IfNotPresent
 
 # EUM configuration
