@@ -41,7 +41,7 @@ pipeline {
         
         stage('update k8s helm') {
             environment {
-             GIT_REPO_NAME = "three-tier-architecture-demo.git"
+             GIT_REPO_NAME = "three-tier-architecture-demo"
              GIT_USER_NAME = "krishmint"
              BUILD_NUMBER=${BUILD_NUMBER}
           }
@@ -59,7 +59,7 @@ pipeline {
                         git add .
                         git commit -m 'Update Kubernetes manifest'
                         git remote -v
-                        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master
                         '''
                     }
                 }
