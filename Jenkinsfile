@@ -49,6 +49,9 @@ pipeline {
                 script {
                     withCredentials([string(credentialsId: 'GITHUBCRED', variable: 'GITHUB_TOKEN')]) {
                         sh '''
+                        git config --global --add safe.directory /home/krish
+                        git config --global user.email "krisnendu007@gmail.com"
+                        git config --global user.name "krishmint"
                         sed -i "s|version:.*|version: ${BUILD_NUMBER}|g" AKS/helm/values.yaml
                         sed -i "s|TAG=.*|TAG=${BUILD_NUMBER}|g" .env 
                         cat AKS/helm/values.yaml
