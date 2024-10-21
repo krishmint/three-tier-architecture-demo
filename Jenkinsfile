@@ -72,7 +72,7 @@ pipeline {
         stage('docker compose build') {
             steps {
                 echo "*******BUILDING DOCKER IMAGES********"
-                sh "docker-compose build"
+                sh "sudo docker-compose build"
                 echo "**********FINISHED BUILDING DOCKER IMAGES*******"
                 
             }
