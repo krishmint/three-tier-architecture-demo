@@ -1,0 +1,1 @@
+™ 2yamlXhr'EKS/helm/templates/payment-service.yaml

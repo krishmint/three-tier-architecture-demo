@@ -1,0 +1,1 @@
+Ú 2yamlXhr)AKS/helm/templates/catalogue-service.yaml

@@ -1,0 +1,1 @@
+P 2yamlXhr(K8s/helm/templates/rabbitmq-service.yaml

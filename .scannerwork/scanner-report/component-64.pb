@@ -1,0 +1,1 @@
+@ 2yamlX$hrK8s/load-deployment.yaml

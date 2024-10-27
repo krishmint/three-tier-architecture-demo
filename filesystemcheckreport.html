@@ -10,7 +10,7 @@ To disable this notice, set the TRIVY_DISABLE_VEX_NOTICE environment variable.
 
 shipping/pom.xml (pom)
 ======================
-Total: 53 (UNKNOWN: 0, LOW: 1, MEDIUM: 23, HIGH: 24, CRITICAL: 5)
+Total: 53 (UNKNOWN: 0, LOW: 0, MEDIUM: 24, HIGH: 24, CRITICAL: 5)
 
 ┌─────────────────────────────────────────────────────────────┬──────────────────┬──────────┬────────┬───────────────────┬─────────────────────────────────────┬──────────────────────────────────────────────────────────────┐
 │                           Library                           │  Vulnerability   │ Severity │ Status │ Installed Version │            Fixed Version            │                            Title                             │
@@ -122,11 +122,11 @@ Total: 53 (UNKNOWN: 0, LOW: 1, MEDIUM: 23, HIGH: 24, CRITICAL: 5)
 │ org.springframework:spring-context                          │ CVE-2022-22968   │          │        │                   │ 5.3.19, 5.2.21.RELEASE              │ Framework: Data Binding Rules Vulnerability                  │
 │                                                             │                  │          │        │                   │                                     │ https://avd.aquasec.com/nvd/cve-2022-22968                   │
 │                                                             ├──────────────────┼──────────┤        │                   ├─────────────────────────────────────┼──────────────────────────────────────────────────────────────┤
-│                                                             │ CVE-2024-38820   │ LOW      │        │                   │ 6.1.14, 6.0.25, 5.3.41              │ The fix for CVE-2022-22968 made disallowedFieldspatterns in  │
+│                                                             │ CVE-2024-38820   │ MEDIUM   │        │                   │ 6.1.14, 6.0.25, 5.3.41              │ The fix for CVE-2022-22968 made disallowedFieldspatterns in  │
 │                                                             │                  │          │        │                   │                                     │ DataBinder ...                                               │
 │                                                             │                  │          │        │                   │                                     │ https://avd.aquasec.com/nvd/cve-2024-38820                   │
-├─────────────────────────────────────────────────────────────┼──────────────────┼──────────┤        │                   ├─────────────────────────────────────┼──────────────────────────────────────────────────────────────┤
-│ org.springframework:spring-core                             │ CVE-2021-22060   │ MEDIUM   │        │                   │ 5.3.14, 5.2.19                      │ springframework: Additional Log Injection in Spring          │
+├─────────────────────────────────────────────────────────────┼──────────────────┤          │        │                   ├─────────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ org.springframework:spring-core                             │ CVE-2021-22060   │          │        │                   │ 5.3.14, 5.2.19                      │ springframework: Additional Log Injection in Spring          │
 │                                                             │                  │          │        │                   │                                     │ Framework (follow-up to CVE-2021-22096)                      │
 │                                                             │                  │          │        │                   │                                     │ https://avd.aquasec.com/nvd/cve-2021-22060                   │
 │                                                             ├──────────────────┤          │        │                   ├─────────────────────────────────────┼──────────────────────────────────────────────────────────────┤

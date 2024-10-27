@@ -1,0 +1,3 @@
+ò
+éYour code is analyzed as compatible with python 2 and 3 by default. This will prevent the detection of issues specific to python 2 or python 3. You can get a more precise analysis by setting a python version in your configuration via the parameter "sonar.python.version"“ä√Û¨2Ä
+wJavaScript/TypeScript/CSS rules were not executed. Error when running: 'node -v'. Is Node.js available during analysis?ıª√Û¨2

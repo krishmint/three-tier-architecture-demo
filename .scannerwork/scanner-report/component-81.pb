@@ -1,0 +1,1 @@
+Q 2yamlXhr%K8s/helm/templates/redis-service.yaml

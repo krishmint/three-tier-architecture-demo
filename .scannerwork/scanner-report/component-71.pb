@@ -1,0 +1,1 @@
+G 2yamlXhr(K8s/helm/templates/shipping-service.yaml

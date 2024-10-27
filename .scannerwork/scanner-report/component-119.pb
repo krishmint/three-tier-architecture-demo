@@ -1,0 +1,1 @@
+w 2yamlX•hrfluentd/Kubernetes/fluentd.yaml

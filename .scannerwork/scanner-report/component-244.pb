@@ -1,0 +1,1 @@
+ô 2yamlXhr'AKS/helm/templates/ratings-service.yaml
