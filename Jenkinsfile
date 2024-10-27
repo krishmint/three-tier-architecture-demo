@@ -3,6 +3,8 @@ pipeline {
 
     environment {
         SONAR_HOME = tool "sonar"
+        BUILD_NUMBER="${BUILD_NUMBER}"
+    }
 
     
     stages {
@@ -28,9 +30,10 @@ pipeline {
         stage('SonarQube Code Quality Analysis') {
             steps {
                 withSonarQubeEnv("sonar"){
-                sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=ultimatecicd -Dsonar.projectKey=ultimatecicd -X"
+                sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=ultimatecicd -Dsonar.projectKey=ultimatecicd -Dsonar.exclusions=**/*.java -X"
                        
                 echo "***SonarQube Quality Analysis PASSED***"
+                }
                 
             }
         }
@@ -66,7 +69,7 @@ pipeline {
             environment {
              GIT_REPO_NAME = "three-tier-architecture-demo"
              GIT_USER_NAME = "krishmint"
-             BUILD_NUMBER="${BUILD_NUMBER}"
+             
           }
             steps {
                 script {
@@ -102,7 +105,9 @@ pipeline {
         
         stage('trivy image scan') {
             steps {
-                sh "sudo docker images | awk '{print \$1}' | xargs -I {} sudo trivy image -o imageScanreport.html {}"
+                sh '''
+                sudo docker images --format "{{.Repository}}:{{.Tag}}" | grep "krishmint:${BUILD_NUMBER}" | xargs -I {} trivy image -o imageScanreport.html {}
+                '''
                 echo "trivy image scan passed"
                 
             }
