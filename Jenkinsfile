@@ -1,8 +1,20 @@
 pipeline {
     agent { label "worker1" }
 
+    environment {
+        SONAR_HOME = tool "sonar"
+
     
     stages {
+
+        stage("Workspace cleanup"){
+            steps{
+                script{
+                    cleanWs()
+                }
+            }
+        }
+
         
         
         stage('checkoutcode') {
@@ -13,8 +25,11 @@ pipeline {
             }
         }
         
-        stage('SonarQube Quality Analysis') {
+        stage('SonarQube Code Quality Analysis') {
             steps {
+                withSonarQubeEnv("Sonar"){
+                sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=ultimatecicd -Dsonar.projectKey=ultimatecicd -X"
+                       
                 echo "***SonarQube Quality Analysis PASSED***"
                 
             }
@@ -23,6 +38,8 @@ pipeline {
         
         stage('Sonar Quality Gate Scan') {
             steps {
+                timeout(time: 1, unit: "MINUTES"){
+                waitForQualityGate abortPipeline: false
                 echo "***SonarQube Quality Gate Scan PASSED ***"
                
             }
@@ -30,7 +47,9 @@ pipeline {
         
         stage('OWASP Dependency Check') {
             steps {
-                echo "OWASP Dependency Check PASSED"
+                dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'OWASP'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+                echo "********OWASP Dependency Check PASSED*********"
                 
             }
         }
@@ -39,7 +58,7 @@ pipeline {
         stage('Trivy File System Scan') {
             steps {
                sh "trivy fs -o filesystemcheckreport.html ."
-               echo "Trivy File System Scan PASSED"
+               echo "*********Trivy File System Scan PASSED*********"
             }
         }
         
