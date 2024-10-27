@@ -27,7 +27,7 @@ pipeline {
         
         stage('SonarQube Code Quality Analysis') {
             steps {
-                withSonarQubeEnv("Sonar"){
+                withSonarQubeEnv("sonar"){
                 sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=ultimatecicd -Dsonar.projectKey=ultimatecicd -X"
                        
                 echo "***SonarQube Quality Analysis PASSED***"
